@@ -14,6 +14,15 @@
         <!-- Bootstrap -->
         <link href="<?php echo APP_URL ?>resources/assets/bootstrap/css/bootstrap-rtl.css" rel="stylesheet">
         <link href="<?php echo APP_URL ?>resources/assets/bootstrap/css/bootstrap-rtl-theme.css" rel="stylesheet">
+
+        <!-- font-awsome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <!-- jumbotron -->
+        <link href="<?php echo APP_URL ?>resources/assets/css/narrow-jumbotron.css" rel="stylesheet">
+
+        <!-- Additional style sheet-->
         <link href="<?php echo APP_URL ?>resources/assets/Css/app.css" rel="stylesheet">
     </head>
     <body>
+        <div class="container">

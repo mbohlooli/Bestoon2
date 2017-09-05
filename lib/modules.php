@@ -8,6 +8,8 @@ function render_page() {
 
     include_once('resources/layouts/header.php');
 
+    !function_exists('deny_nav') ? include_once "resources/layouts/nav.php" : null;
+
     show_messages();
 
     if(function_exists('get_content')) {
@@ -19,6 +21,7 @@ function render_page() {
 
 // sets the current page & handle errors
 function load_module() {
+    global $module;
     $module = get_module_name();
     if(empty($module)) {
         $module = 'home';
@@ -34,9 +37,8 @@ function load_module() {
         //check_for_authentication_requirement();
 
     } else {
-        add_message('آدرس وارد شده، صحیح نیست.', 'error');
-        require_once("modules/home.php");
-
+        redirect_to(APP_URL."404");
+        return null;
     }
 
     render_page();

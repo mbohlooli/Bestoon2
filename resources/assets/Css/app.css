@@ -9,7 +9,10 @@
     font-style: normal
 }
 
+:not(i){
+    font-family: Yekan, serif !important;
+}
 
-*:not(span){
-    font-family: Yekan !important;
+span{
+    font-family: 'Glyphicons Halflings' !important;
 }
