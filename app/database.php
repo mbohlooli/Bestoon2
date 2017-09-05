@@ -15,6 +15,8 @@ class Database
         $this->real_escape_string_exists = function_exists("mysqli_real_escape_string");
         // connecting to database
         $this->open_connection();
+        // creating tables
+        $this->create_default_tables();
     }
 
     public function open_connection()
@@ -124,18 +126,7 @@ class Database
         return mysqli_num_rows($result_set);
     }
 
-    /**
-     * @param string $name
-     * @return mixed
-     */
-    public function insert_id($name)
-    {
-        $id = mysqli_query($this->connection, "SELECT MAX(id) FROM $name");
-        $res = mysqli_fetch_assoc($id);
-        // get the last id inserted over the current db connection
-//        return mysqli_insert_id($this->connection);
-        return $res['MAX(id)'];
-    }
+
     // Returns the rows that had been affected by last query
     public function affected_rows()
     {
@@ -162,6 +153,18 @@ class Database
      */
     private function create_default_tables()
     {
-        //TODO: Make database tables
+        $this->query("
+            CREATE TABLE IF NOT EXISTS `bestoon`.`users` (
+                id INTEGER PRIMARY KEY AUTO_INCREMENT,
+                username VARCHAR(35) NOT NULL,
+                password TEXT NOT NULL,
+                first_name VARCHAR(50) NOT NULL,
+                last_name VARCHAR(50) NOT NULL,
+                email VARCHAR(255) NOT NULL,
+                last_access DATETIME NOT NULL,
+                created_at TIMESTAMP NOT NULL,
+                updated_at TIMESTAMP NOT NULL
+            );
+        ");
     }
 }

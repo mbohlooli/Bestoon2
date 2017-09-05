@@ -128,6 +128,20 @@ class Database_object
     }
 
     /**
+     * @return mixed
+     * @internal param string $name
+     */
+    public function insert_id()
+    {
+        global $db;
+        $id = $db->query("SELECT MAX(id) FROM ".static::$table_name);
+        $res = $id->fetch_assoc();
+        // get the last id inserted over the current db connection
+        //return mysqli_insert_id($this->connection);
+        return $res['MAX(id)'];
+    }
+
+    /**
      * @param int $id
      * @param bool $in_array
      * @return bool|mixed
