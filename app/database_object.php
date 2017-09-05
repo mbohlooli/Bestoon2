@@ -3,9 +3,17 @@
 
 class Database_object
 {
+    // Table name in database
     protected static $table_name;
+    // table columns
     protected static $db_fields;
 
+    /**
+     * @param string $sql
+     * @param bool $convert_to_array
+     * @return array
+     * runs a query on database & gives the rusult in an costum array or an array of objects
+     */
     public static function find_by_sql($sql = "", $convert_to_array = true)
     {
         global $db;
@@ -25,12 +33,17 @@ class Database_object
         }
     }
 
+    /**
+     * @param $record
+     * @return mixed
+     */
     private static function instantiate($record)
     {
         // Could chedck that $record exists and is a array
         // Simple, long-form approach
         $class_name = get_called_class();
         $object = new $class_name;
+        // Old mehtod
         //$object->id = $record['id'];
         //$object->username = $record['username'];
         //$object->password = $record['password'];
@@ -46,6 +59,10 @@ class Database_object
         return $object;
     }
 
+    /**
+     * @param $record
+     * @return array
+     */
     private static function array_instantiate($record)
     {
         $class_name = get_called_class();
@@ -59,6 +76,10 @@ class Database_object
         return $result_in_array;
     }
 
+    /**
+     * @param $attribute
+     * @return bool
+     */
     private function has_attribute($attribute)
     {
         // get object vars returns an associative array with all attributes
@@ -69,6 +90,10 @@ class Database_object
         return array_key_exists($attribute, $object_vars);
     }
 
+    /**
+     * @return array
+     * returns an array of object attributes
+     */
     protected function attributes()
     {
         $attributes = array();
@@ -80,6 +105,10 @@ class Database_object
         return $attributes;
     }
 
+    /**
+     * @return array
+     * secures app to sql injection
+     */
     protected function sanitized_attribute(){
         global $db;
         $clean_attributes = array();
@@ -89,28 +118,53 @@ class Database_object
         return $clean_attributes;
     }
 
+    /**
+     * @return array
+     * gets all of the table
+     */
     public static function find_all()
     {
         return static::find_by_sql("SELECT * FROM " . static::$table_name);
     }
 
+    /**
+     * @param int $id
+     * @param bool $in_array
+     * @return bool|mixed
+     * finds a row that matches given id
+     */
     public static function find_by_id($id = 0, $in_array = false)
     {
         $result_array = static::find_by_sql("SELECT * FROM ". static::$table_name ." WHERE id='{$id}' LIMIT 1", $in_array);
         return !empty($result_array) ? array_shift($result_array) : false;
     }
 
+    /**
+     * @param string $name
+     * @param string $value
+     * @param bool $in_array
+     * @return bool|mixed
+     * finds a row that the colname of it matches the given value
+     */
     public static function find_by_colname($name = "", $value = "", $in_array = true)
     {
         $result_array = static::find_by_sql("SELECT * FROM ". static::$table_name ." WHERE $name='{$value}' LIMIT 1", $in_array);
         return !empty($result_array) ? array_shift($result_array) : false;
     }
 
+    /**
+     * @return bool|void
+     * create if not exists, update if exists
+     */
     public function save()
     {
         return static::find_by_id($this->id) ? $this->update() : $this->create();
     }
 
+    /**
+     * @return bool
+     * insert a row in database based on current object attribnutes
+     */
     protected function create()
     {
         global $db;

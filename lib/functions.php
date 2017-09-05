@@ -1,5 +1,6 @@
 <?php
 
+// get the value if not exists returns a default one
 function get_value($param,$default = null) {
     if (isset($_POST[$param])) {
         $value = $_POST[$param];
@@ -9,6 +10,11 @@ function get_value($param,$default = null) {
     return $value;
 }
 
+/**
+ * @param null $path
+ * @return string
+ * the home page url of app
+ */
 function home_url($path = null) {
     if(!$path || $path == '/') {
         return App_URL;
@@ -16,6 +22,11 @@ function home_url($path = null) {
     return App_URL . $path;
 }
 
+/**
+ * @param $url
+ * @return bool
+ * cheaks if the url is valid or not
+ */
 function is_valid_url($url) {
     if(empty($url)) {
         return false;
@@ -24,6 +35,10 @@ function is_valid_url($url) {
     return (filter_var($url, FILTER_VALIDATE_URL) !== false);
 }
 
+/**
+ * @param string $url
+ * redirects to a url
+ */
 function redirect_to($url) {
     if(!is_valid_url($url)) {
         return;
@@ -32,6 +47,11 @@ function redirect_to($url) {
     die();
 }
 
+/**
+ * @param $string
+ * @return string
+ * secures to xss & sql injections
+ */
 function prepare_input($string){
     $result =  htmlspecialchars(stripslashes($string));
 

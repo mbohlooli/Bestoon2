@@ -1,5 +1,6 @@
 <?php
 
+// renders the page
 function render_page() {
     if(function_exists('process_inputs')) {
         process_inputs();
@@ -16,6 +17,7 @@ function render_page() {
     include_once('resources/layouts/footer.php');
 }
 
+// sets the current page & handle errors
 function load_module() {
     $module = get_module_name();
     if(empty($module)) {
@@ -54,8 +56,15 @@ function check_for_authentication_requirement() {
     }
 }
 */
+
+// an array of app messeges
 $messages = array();
 
+/**
+ * @param null $message
+ * @param string $type
+ * adds a message to messegas array
+ */
 function add_message($message = null, $type = 'error') {
     if(!$message) {
         return;
@@ -68,6 +77,7 @@ function add_message($message = null, $type = 'error') {
     );
 }
 
+// Shows all the messages
 function show_messages() {
     global $messages;
     if(empty($messages)) {
@@ -92,6 +102,7 @@ function show_messages() {
 
 }
 
+// gets the url for each module in app
 function get_module_name() {
     $url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     $req = str_replace(APP_URL, '', $url);
