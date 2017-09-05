@@ -8,6 +8,13 @@ class Database_object
     // table columns
     protected static $db_fields;
 
+    public $id;
+
+    public function __construct()
+    {
+        $this->id =  $this->insert_id();
+    }
+
     /**
      * @param string $sql
      * @param bool $convert_to_array
@@ -231,5 +238,11 @@ class Database_object
         $sql.= " WHERE id=".$db->escape_value_both($this->id);
         $sql.= " LIMIT 1";
         $db->query($sql);
+    }
+
+    public static function row_exists($col_name, $value)
+    {
+        $row_exists = self::find_by_colname($col_name, $value);
+        return $row_exists ? true : false;
     }
 }
