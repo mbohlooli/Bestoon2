@@ -14,29 +14,23 @@ foreach (glob('lib/*.php') as $lib){
     include_once $lib;
 }
 
+// Include essential classes first
+require_once "app/database.php";
+require_once "app/database_object.php";
+
 // Include models
 foreach (glob('app/*.php') as $class){
     include_once $class;
 }
 
 //Database Instance
+global $db;
 $db = new Database();
 
 // Sets the default timezone to Tehran
 date_default_timezone_set("Asia/Tehran");
 
-// Privileges
-$privileges = array(
-	'اضافه کردن، مشاهده، ویرایش، و حذف مدیران و دسترسی ها',
-	'اضافه کردن، مشاهده، ویرایش و حذف کاربران و صفحات',
-	'اضافه کردن، مشاهده، ویرایش و حذف دخل و خرج',
-);
-
-// Adding privileges into database
-foreach ($privileges as $privilege) {
-	$now = date("Y-m-d H:i:s");
-	$db->query("
-		INSERT INTO `bestoon`.`privileges` (description, created_at) VALUES
-		('{$privilege}', '{$now}')
-	");
-}
+// Adding Privileges
+global $added;
+$added = false;
+Privilege::add_default_prvileges();
