@@ -1,7 +1,7 @@
 <?php
 
 define('APP_TITLE', 'بستون');
-define('APP_URL', 'http://192.168.1.5/bestoon/');
+define('APP_URL', 'http://localhost/bestoon/');
 define('APP_PATH', __DIR__.DIRECTORY_SEPARATOR);
 
 define('DB_NAME', 'bestoon');
@@ -31,6 +31,4 @@ $db = new Database();
 date_default_timezone_set("Asia/Tehran");
 
 // Adding Privileges
-global $added;
-$added = false;
 Privilege::add_default_prvileges();

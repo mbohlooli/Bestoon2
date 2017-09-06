@@ -59,3 +59,10 @@ function prepare_input($string){
 
     return $result;
 }
+
+
+function print_var($data){
+    echo "<pre>";
+    var_dump($data);
+    echo "</pre>";
+}

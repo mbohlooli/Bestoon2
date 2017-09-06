@@ -156,14 +156,16 @@ class Database
         $this->query("
             CREATE TABLE IF NOT EXISTS `bestoon`.`users` (
                 id INTEGER PRIMARY KEY AUTO_INCREMENT,
-                username VARCHAR(35) UNIQUE NOT NULL,
+                username VARCHAR(35) NOT NULL,
                 password TEXT NOT NULL,
                 first_name VARCHAR(50) NOT NULL,
                 last_name VARCHAR(50) NOT NULL,
-                email VARCHAR(255) UNIQUE NOT NULL,
+                email VARCHAR(255) NOT NULL,
                 last_access DATETIME NOT NULL,
                 created_at TIMESTAMP NOT NULL,
-                updated_at TIMESTAMP NOT NULL
+                updated_at TIMESTAMP NOT NULL,
+                UNIQUE (`username`),
+                UNIQUE (`email`)
             );
         ");
 

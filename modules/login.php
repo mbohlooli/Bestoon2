@@ -20,8 +20,9 @@ function get_content(){ ?>
 	                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="رمز عبور">
 					</div>
 					<span class="button-checkbox">
-						<button type="button" class="btn btn-warning"  data-toggle="button" aria-pressed="false" autocomplete="off">مرا به خاطر بسپار</button>
-	                    <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+	                    <label class="btn btn-warning">
+    						<input type="checkbox" autocomplete="off" name="remember_me" id="remember_me">&nbsp;&nbsp; مرا به خاطر بسپار
+  						</label>
 						<a href="" class="btn btn-link pull-right">رمز عبور خود را فراموش کرده اید؟</a>
 					</span>
 					<hr class="colorgraph">
@@ -38,5 +39,4 @@ function get_content(){ ?>
 		</div>
 	</div>
 </div>
-
 <?php }
