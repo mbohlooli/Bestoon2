@@ -5,8 +5,8 @@
         <?php global $module ?>
         <ul class="nav nav-pills pull-left">
             <li role="presentation" class="<?php echo $module == 'home' ? 'active' : null ?>"><a href="<?php APP_URL ?>home">خانه</a></li>
-            <li role="presentation"><a href="#">درباره</a></li>
-            <li role="presentation"><a href="#">تماس</a></li>
+            <li role="presentation" class="<?php echo $module == 'about' ? 'active' : null ?>"><a href="<?php echo APP_URL ?>about">درباره ما</a></li>
+            <li role="presentation"><a href="#">تماس با ما</a></li>
         </ul>
         <ul class="nav nav-pills pull-right">
             <li role="presentation" class="<?php echo $module == 'login' ? 'active' : null ?>" ><a href="<?php echo APP_URL ?>login">ورود</a></li>

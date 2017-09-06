@@ -166,5 +166,15 @@ class Database
                 updated_at TIMESTAMP NOT NULL
             );
         ");
+
+        $this->query("
+            CREATE TABLE IF NOT EXISTS `bestoon`.`privileges` (
+                id INTEGER PRIMARY KEY AUTO_INCREMENT,
+                description TEXT NOT NULL,
+                created_at TIMESTAMP NOT NULL,
+                updated_at TIMESTAMP NOT NULL
+            );
+        ");
+
     }
 }
