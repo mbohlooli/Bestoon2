@@ -42,6 +42,7 @@ function get_content(){ ?>
 <?php }
 
 function process_inputs(){
+	global $db;
 	global $session;
 	if(isset($_POST['submit'])){
 		if(!$_POST['username']){
@@ -49,6 +50,11 @@ function process_inputs(){
 			return ;
 		} elseif(!$_POST['password']){
 			add_message('رمز عبور نمی توان خالی باشد');
+			return;
+		}
+
+		if(!User::row_exists('username', $db->escape_value_both($_POST['username']))){
+			add_message('این کاربر در سیستم موجود نمی باشد.');
 			return;
 		}
 		$username = trim($_POST['username']);
@@ -66,7 +72,7 @@ function process_inputs(){
 			add_message("logged_in", "success");
 			return;
 		} else {
-			add_message('نام کاربری یا رمز عبور اشتباه است');
+			add_message('رمز عبور وارد شده صحیح نمی باشد.');
 		}
 	}
 }

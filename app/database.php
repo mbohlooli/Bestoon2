@@ -178,5 +178,17 @@ class Database
             );
         ");
 
+        $this->query("
+            CREATE TABLE IF NOT EXISTS `bestoon`.`user_privileges` (
+                id INTEGER PRIMARY KEY AUTO_INCREMENT,
+                user_id INTEGER NOT NULL,
+                privilege_id INTEGER NOT NULL,
+                FOREIGN KEY (user_id)
+                    REFERENCES users(id),
+                FOREIGN KEY (privilege_id)
+                    REFERENCES privileges(id)
+            );
+        ");
+
     }
 }
