@@ -22,19 +22,23 @@ function render_page() {
 // sets the current page & handle errors
 function load_module() {
     global $module;
+    global $session;
     $module = get_module_name();
     if(empty($module)) {
         $module = 'home';
     }
 
-    /*if(is_user_loggen_in() && $module == 'login') {
+    if($session->is_logged_in() && $module == 'login') {
         redirect_to(home_url());
-    }*/
+    }
+    elseif($session->is_logged_in() && $module == 'register') {
+        redirect_to(home_url());
+    }
 
     $module_file = "modules/$module.php";
     if(file_exists($module_file)) {
         require_once("modules/$module.php");
-        //check_for_authentication_requirement();
+        check_for_authentication_requirement();
 
     } else {
         redirect_to(APP_URL."404");
@@ -43,7 +47,7 @@ function load_module() {
 
     render_page();
 }
-/*
+
 function is_authentication_required() {
     if(function_exists('authentication_required')) {
         return authentication_required();
@@ -52,12 +56,12 @@ function is_authentication_required() {
 }
 
 function check_for_authentication_requirement() {
-    if(is_authentication_required() && !is_user_loggen_in()) {
-        $login_url = home_url('login');
-        redirect_to($login_url);
+    global $session;
+    if(is_authentication_required() && !$session->is_logged_in()) {
+        redirect_to(home_url('404'));
     }
 }
-*/
+
 
 // an array of app messeges
 $messages = array();

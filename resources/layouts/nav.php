@@ -1,15 +1,20 @@
+<?php
+    global $session;
+    global $module;
+?>
 <div class="header clearfix" style="margin-bottom: 20px;">
     <h3 class="text-muted"><?php echo APP_TITLE ?></h3>
     <br>
     <nav>
-        <?php global $module ?>
         <ul class="nav nav-pills pull-left">
             <li role="presentation" class="<?php echo $module == 'home' ? 'active' : null ?>"><a href="<?php APP_URL ?>home">خانه</a></li>
+            <?php if($session->is_logged_in()): ?>
+                <li role="presentation" class="<?php echo $module == 'dashboard' ? 'active' : null ?>"><a href="<?php echo APP_URL ?>dashboard">پیشخوان</a></li>
+            <?php endif; ?>
             <li role="presentation" class="<?php echo $module == 'about' ? 'active' : null ?>"><a href="<?php echo APP_URL ?>about">درباره ما</a></li>
             <li role="presentation"><a href="#">تماس با ما</a></li>
         </ul>
         <ul class="nav nav-pills pull-right">
-            <?php global $session; ?>
             <?php if($session->is_logged_in()): ?>
                 <li role="presentation"><a href="<?php echo APP_URL ?>logout">خروج</a></li>
             <?php else: ?>
