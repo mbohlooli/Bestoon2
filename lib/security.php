@@ -47,23 +47,26 @@ function validate_pw($password, $hash){
 /*
  * This function secures the site from XSS attacks
  */
-function check_input(&$var){
+function check_input($var){
     $var = trim(
         htmlspecialchars(
             stripslashes($var)
         )
     );
+    return $var;
 }
 
-function secure_to_sql_injection(&$var){
+function secure_to_sql_injection($var){
     $var = str_replace("'", "", $var);
     $var = str_replace("--", "", $var);
     $var = str_replace("!", "", $var);
     $var = str_replace("&", "", $var);
     $var = str_replace('"', '', $var);
+    return $var;
 }
 
-function secure_data(&$value){
+function secure_data($value){
     check_input($value);
     secure_to_sql_injection($value);
+    return $value;
 }

@@ -210,7 +210,7 @@ class Database_object
         $sql.= $db->escape_value_both($this->first_name) . "' , '";
         $sql.= $db->escape_value_both($this->last_name) . "');";*/
         if($db->query($sql)){
-            $this->id = $db->insert_id(static::$table_name);
+            $this->id = static::insert_id();
             return true;
         } else {
             return false;

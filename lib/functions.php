@@ -19,7 +19,7 @@ function home_url($path = null) {
     if(!$path || $path == '/') {
         return App_URL;
     }
-    return App_URL . $path;
+    return APP_URL . $path;
 }
 
 /**

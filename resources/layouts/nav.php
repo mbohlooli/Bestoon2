@@ -1,4 +1,4 @@
-<div class="header clearfix">
+<div class="header clearfix" style="margin-bottom: 20px;">
     <h3 class="text-muted"><?php echo APP_TITLE ?></h3>
     <br>
     <nav>
