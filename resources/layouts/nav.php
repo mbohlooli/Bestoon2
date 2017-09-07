@@ -9,8 +9,13 @@
             <li role="presentation"><a href="#">تماس با ما</a></li>
         </ul>
         <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="<?php echo $module == 'login' ? 'active' : null ?>" ><a href="<?php echo APP_URL ?>login">ورود</a></li>
-            <li role="presentation" class="<?php echo $module == 'register' ? 'active' : null ?>" ><a href="<?php echo APP_URL ?>register">ثبت نام</a></li>
+            <?php global $session; ?>
+            <?php if($session->is_logged_in()): ?>
+                <li role="presentation"><a href="<?php echo APP_URL ?>logout">خروج</a></li>
+            <?php else: ?>
+                <li role="presentation" class="<?php echo $module == 'login' ? 'active' : null ?>" ><a href="<?php echo APP_URL ?>login">ورود</a></li>
+                <li role="presentation" class="<?php echo $module == 'register' ? 'active' : null ?>" ><a href="<?php echo APP_URL ?>register">ثبت نام</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 </div>

@@ -9,7 +9,7 @@ function get_content(){ ?>
 <div class="container">
 	<div class="row" style="margin-top:20px">
 	    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-			<form role="form">
+			<form role="form" method="POST">
 				<fieldset>
 					<h2>لطفاً وارد شوید</h2>
 					<hr class="colorgraph">
@@ -28,7 +28,7 @@ function get_content(){ ?>
 					<hr class="colorgraph">
 					<div class="row">
 						<div class="col-xs-6 col-sm-6 col-md-6">
-	                        <input type="submit" class="btn btn-lg btn-success btn-block" value="ورود">
+	                        <button type="submit" name="submit" class="btn btn-lg btn-success btn-block" value="1">ورود</button>
 						</div>
 						<div class="col-xs-6 col-sm-6 col-md-6">
 							<a href="<?php echo APP_URL ?>register" class="btn btn-lg btn-primary btn-block">ثبت نام</a>
@@ -40,3 +40,33 @@ function get_content(){ ?>
 	</div>
 </div>
 <?php }
+
+function process_inputs(){
+	global $session;
+	if(isset($_POST['submit'])){
+		if(!$_POST['username']){
+			add_message('نام کاربری نمی تواند خالی باشد.');
+			return ;
+		} elseif(!$_POST['password']){
+			add_message('رمز عبور نمی توان خالی باشد');
+			return;
+		}
+		$username = trim($_POST['username']);
+		$password = trim($_POST['password']);
+		$found_user = User::authenticate($username, $password);
+		if($found_user) {
+			$user_object = User::find_by_sql("SELECT * FROM users WHERE username = '{$username}' LIMIT 1;", false);
+			/*
+			if($user_object[0]->privilege == 'disable'){
+				add_message('این کاربر مسدود شده است.', 'warning');
+				return;
+			}
+			*/
+			$session->login($user_object);
+			add_message("logged_in", "success");
+			return;
+		} else {
+			add_message('نام کاربری یا رمز عبور اشتباه است');
+		}
+	}
+}

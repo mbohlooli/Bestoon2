@@ -9,6 +9,9 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'mehrab');
 define('DB_PASS', '1234');
 
+//session expiration time
+define("SESSION_EXPIRATION_TIME", 3600*60);
+
 // Include functions
 foreach (glob('lib/*.php') as $lib){
     include_once $lib;
@@ -32,3 +35,6 @@ date_default_timezone_set("Asia/Tehran");
 
 // Adding Privileges
 Privilege::add_default_prvileges();
+
+// Adding session
+$session = new Session();
