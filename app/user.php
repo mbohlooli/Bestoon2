@@ -21,12 +21,42 @@ class User extends Database_object
         }
     }
 
-    public function save()
+    public function save($privileges = array(4))
     {
-        return self::row_exists('username', $this->username) ? $this->update() : $this->create();
+        return self::row_exists('username', $this->username) ? $this->update() : $this->create($privileges);
     }
 
-    public function update()
+    protected function create($privileges = array(4))
+    {
+        global $db;
+
+        $attribute = $this->attributes();
+
+        foreach ($attribute as $k=>$v){
+            $attribute[$k] = $db->escape_value_sql($v);
+        }
+
+        $sql = "INSERT INTO " . static::$table_name . " (";
+        $sql.= join(', ', array_keys($attribute));
+        $sql.= ") VALUES ('";
+        $sql.= join("', '", array_values($attribute));
+        $sql.= "');";
+        if($db->query($sql)){
+            $this->id = static::insert_id();
+            foreach($privileges as $privilege_id)
+            {
+                $privilege = new User_privilege();
+                $privilege->user_id = $this->id;
+                $privilege->privilege_id = $privilege_id;
+                $privilege->save();
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function update()
     {
         global $db;
         $attribute = $this->attributes();

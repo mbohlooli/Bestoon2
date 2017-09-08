@@ -31,7 +31,7 @@ class Session
             $this->user_id = $_SESSION['user_id'] = $user[0]->id;
             $this->last_access = $_SESSION['last_access'] = time();
             $this->logged_in = true;
-//            redirect_to(home_url('dashboard'));
+           redirect_to(home_url('dashboard'));
         }
     }
 

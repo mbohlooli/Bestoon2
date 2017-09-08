@@ -17,7 +17,7 @@ function get_value($param,$default = null) {
  */
 function home_url($path = null) {
     if(!$path || $path == '/') {
-        return App_URL;
+        return APP_URL;
     }
     return APP_URL . $path;
 }
