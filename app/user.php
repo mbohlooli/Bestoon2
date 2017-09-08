@@ -83,4 +83,15 @@ class User extends Database_object
             return true;
         }
     }
+
+    public static function get_privileges()
+    {
+        global $session;
+        global $db;
+        if(!$session->is_logged_in()){
+            return;
+        }
+        $privileges = $db->query("SELECT * FROM user_privileges WHERE user_id = {$_SESSION['user_id']}");
+        return $privileges; 
+    }
 }

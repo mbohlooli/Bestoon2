@@ -69,7 +69,6 @@ function process_inputs(){
 			}
 			*/
 			$session->login($user_object);
-			add_message("logged_in", "success");
 			return;
 		} else {
 			add_message('رمز عبور وارد شده صحیح نمی باشد.');

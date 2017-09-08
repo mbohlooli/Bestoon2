@@ -57,3 +57,10 @@ $user->last_access = date("0000-00-00 00:00:00");
 $user->created_at = date("Y-m-d H:i:s");
 $user->updated_at = "0000-00-00 00:00:00";
 $user->save([1,2,3,4]);
+
+
+if($session->is_logged_in())
+{
+	global $current_user;
+	$current_user = User::find_by_sql("SELECT * FROM users WHERE id = '{$_SESSION['user_id']}' LIMIT 1;", false)[0];
+}
