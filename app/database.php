@@ -190,5 +190,16 @@ class Database
             );
         ");
 
+        $this->query("
+            CREATE TABLE IF NOT EXISTS `bestoon`.`incomes`(
+                id INTEGER PRIMARY KEY AUTO_INCREMENT,
+                title TEXT NOT NULL,
+                amount BIGINT NOT NULL,
+                user_id INTEGER NOT NULL,
+                FOREIGN KEY (user_id)
+                    REFERENCES users(id)
+            );
+        ");
+
     }
 }

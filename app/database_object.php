@@ -12,7 +12,7 @@ class Database_object
 
     public function __construct()
     {
-        $this->id =  $this->insert_id();
+        $this->id = $this->insert_id()+1;
     }
 
     /**
