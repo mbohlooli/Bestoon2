@@ -23,6 +23,10 @@
 
         <!-- Additional style sheet-->
         <link href="<?php echo APP_URL ?>resources/assets/Css/app.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="<?php echo APP_URL ?>resources/assets/date/kamadatepicker.min.css"/>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="<?php echo APP_URL ?>resources/assets/date/kamadatepicker.min.js"></script>
     </head>
     <body>
         <div class="container">

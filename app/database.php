@@ -195,6 +195,7 @@ class Database
                 id INTEGER PRIMARY KEY AUTO_INCREMENT,
                 title TEXT NOT NULL,
                 amount BIGINT NOT NULL,
+                `date` DATE NOT NULL,
                 user_id INTEGER NOT NULL,
                 FOREIGN KEY (user_id)
                     REFERENCES users(id)
