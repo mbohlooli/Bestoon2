@@ -13,7 +13,7 @@ function get_content(){
 ?>
 	<h1><?php echo $current_user->full_name() ?></h1>
     <br><br>
-    <a href="<?php echo APP_URL ?>submit-income" class="btn btn-outline-success">ثبت درآمد</a>
+    <a href="<?php echo APP_URL ?>submit-income" class="btn btn-outline-success" style="margin-left: 10px;">ثبت درآمد</a>
     <a href="<?php echo APP_URL ?>submit-expense" class="btn btn-outline-danger">ثبت خرج</a>
     <br><br>
     <div class="row">

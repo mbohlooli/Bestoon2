@@ -37,6 +37,7 @@ class Expense extends Database_object
             <th><div align='center'>میزان</div></th>
             <th><div align='center'>تاریخ</div></th>
         </tr>";
+        $sum = 0;
         foreach ($expenses as $expense)
         {
             echo
@@ -46,8 +47,20 @@ class Expense extends Database_object
                 <td><div align='center'>$expense[amount]</div></td>
                 <td><div align='center'>$expense[date]</div></td>
             </tr>";
+            $sum += $expense['amount'];
             $i++;
         }
+        echo
+        "<tr>
+            <td class='bg-primary'><div align='center'>جمع</div></td>
+            <td class='bg-success' colspan='3'><div align='center'>$sum</div></td>
+        </tr>";
+        $avg = $sum/($i-1);
+        echo
+        "<tr>
+            <td class='bg-warning'><div align='center'>میانگین</div></td>
+            <td class='bg-info' colspan='3'><div align='center'>$avg</div></td>
+        </tr>";
         echo "</table>";
         echo "</div>";
     }

@@ -22,7 +22,6 @@ span{
 }
 
 .btn-outline-primary {
-    margin-left: 10px;
     color: #007bff;
     background-color: transparent;
     background-image: none;
@@ -88,4 +87,9 @@ span{
 
 .bg-danger{
     background-color: #dc3545 !important;
+}
+
+.bg-royal{
+    background-color: #886aea !important;
+    color: #ffffff;
 }
