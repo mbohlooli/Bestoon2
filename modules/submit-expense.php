@@ -1,7 +1,7 @@
 <?php
 
 function get_title(){
-    return 'ثبت درآمد';
+    return 'ثبت خرج';
 }
 
 function authentication_required(){
@@ -14,16 +14,16 @@ function get_content(){ ?>
             <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                 <form role="form" method="POST">
                     <fieldset>
-                        <h2>ثبت درآمد</h2>
+                        <h2>ثبت خرج</h2>
                         <hr class="colorgraph">
                         <div class="form-group">
                             <input type="text" name="title" id="title" class="form-control input-lg" placeholder="موضوع">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="date" id="date" class="form-control input-lg" placeholder="تاریخ درآمد">
+                            <input type="text" name="date" id="date" class="form-control input-lg" placeholder="تاریخ خرج">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="amount" id="amount" class="form-control input-lg" placeholder="میزان درآمد به تومان">
+                            <input type="text" name="amount" id="amount" class="form-control input-lg" placeholder="میزان خرج به تومان">
                         </div>
                         <hr class="colorgraph">
                         <div class="row">
@@ -53,7 +53,7 @@ function get_content(){ ?>
 function process_inputs(){
     if(isset($_POST['submit'])){
         if(!isset($_POST['title']) || !$_POST['title']){
-            add_message('لطفا موضوعی برای درآمد خود پیدا کنید.');
+            add_message('لطفا موضوعی برای خرج خود پیدا کنید.');
             return;
         }
         if(!isset($_POST['date']) || !$_POST['date']){
@@ -61,18 +61,18 @@ function process_inputs(){
             return;
         }
         if(!isset($_POST['amount']) || !$_POST['amount']){
-            add_message('لطفا مقداری برای درآمد خود وارد کنید.');
+            add_message('لطفا مقداری برای خرج خود وارد کنید.');
             return;
         }
         if(!is_numeric($_POST['amount'])){
-            add_message('میزان درآمد باید یک عدد باشد.');
+            add_message('میزان خرج باید یک عدد باشد.');
             return;
         }
-        $income = new Income();
-        $income->title = $_POST['title'];
-        $income->amount = $_POST['amount'];
-        $income->date = str_replace("/", "-", $_POST['date']);
-        $income->save();
+        $expesne = new Expense();
+        $expesne->title = $_POST['title'];
+        $expesne->amount = $_POST['amount'];
+        $expesne->date = str_replace("/", "-", $_POST['date']);
+        $expesne->save();
         redirect_to(home_url('dashboard'));
     }
 }

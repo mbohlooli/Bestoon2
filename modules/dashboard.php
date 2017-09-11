@@ -10,15 +10,22 @@ function get_title(){
 
 function get_content(){ 
 	global $current_user;
-
-    $url = APP_URL;
-	echo "<h1>{$current_user->full_name()}</h1>";
-    echo "<br><br>";
-
-    echo "<a href='{$url}submit-income' class='btn btn-default'>ثبت دخل جدید</a>";
-
-    echo "<br><br>";
-	echo 'دسترسی ها:&nbsp;&nbsp;&nbsp;&nbsp;';
+?>
+	<h1><?php echo $current_user->full_name() ?></h1>
+    <br><br>
+    <a href="<?php echo APP_URL ?>submit-income" class="btn btn-outline-success">ثبت درآمد</a>
+    <a href="<?php echo APP_URL ?>submit-expense" class="btn btn-outline-danger">ثبت خرج</a>
+    <br><br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <?php Income::show_table(); ?>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <?php Expense::show_table(); ?>
+        </div>
+    </div>
+    <br><br>
+	دسترسی ها:&nbsp;&nbsp;&nbsp;&nbsp;
+<?php
 	echo Privilege::show_privileges();
-
 }

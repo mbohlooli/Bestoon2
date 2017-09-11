@@ -1,9 +1,9 @@
 <?php
 
 
-class Income extends Database_object
+class Expense extends Database_object
 {
-    protected static $table_name = 'incomes';
+    protected static $table_name = 'expenses';
     protected static $db_fields = array('id', 'title', 'amount', 'date', 'user_id');
     public $id;
     public $title;
@@ -20,16 +20,16 @@ class Income extends Database_object
 
     public static function show_table()
     {
-        $incomes = self::find_by_sql("SELECT * FROM ". self::$table_name ." WHERE user_id = {$_SESSION['user_id']}");
-        if(empty($incomes))
+        $expenses = self::find_by_sql("SELECT * FROM ". self::$table_name ." WHERE user_id = {$_SESSION['user_id']}");
+        if(empty($expenses))
         {
-            echo "<div class='alert alert-info'>هنوز درآمدی ثبت نشده است.</div>";
+            echo "<div class='alert alert-info'>هنوز خرجی ثبت نشده است.</div>";
             return;
         }
         $i = 1;
         echo "<div class='table-responsive'>";
         echo "<table class='table table-striped table-bordered'>";
-        echo "<tr class='bg-warning'><th colspan='4'><div align='center'>درآمد ها</div></th></tr>";
+        echo "<tr class='bg-warning'><th colspan='4'><div align='center'>خرج ها</div></th></tr>";
         echo
         "<tr class='bg-info'>
             <th><div align='center'>ردیف</div></th>
@@ -37,14 +37,14 @@ class Income extends Database_object
             <th><div align='center'>میزان</div></th>
             <th><div align='center'>تاریخ</div></th>
         </tr>";
-        foreach ($incomes as $income)
+        foreach ($expenses as $expense)
         {
             echo
             "<tr style='background-color: lightgrey;'>
                 <td><div align='center'>$i</div></td>
-                <td><div align='center'>$income[title]</div></td>
-                <td><div align='center'>$income[amount]</div></td>
-                <td><div align='center'>$income[date]</div></td>
+                <td><div align='center'>$expense[title]</div></td>
+                <td><div align='center'>$expense[amount]</div></td>
+                <td><div align='center'>$expense[date]</div></td>
             </tr>";
             $i++;
         }
