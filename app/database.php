@@ -197,8 +197,11 @@ class Database
                 amount BIGINT NOT NULL,
                 `date` DATE NOT NULL,
                 user_id INTEGER NOT NULL,
+                cat_id INTEGER NOT NULL,
                 FOREIGN KEY (user_id)
-                    REFERENCES users(id)
+                    REFERENCES users(id),
+                FOREIGN KEY (cat_id)
+                    REFERENCES income_categories(id)
             );
         ");
 
@@ -209,46 +212,29 @@ class Database
                 amount BIGINT NOT NULL,
                 `date` DATE NOT NULL,
                 user_id INTEGER NOT NULL,
+                cat_id INTEGER NOT NULL,
                 FOREIGN KEY (user_id)
-                    REFERENCES users(id)
+                    REFERENCES users(id),
+                FOREIGN KEY (cat_id)
+                    REFERENCES expense_categories(id)
             );
         ");
 
         $this->query("
             CREATE TABLE IF NOT EXISTS `bestoon`.`expense_categories`(
                 id INTEGER PRIMARY KEY AUTO_INCREMENT,
-                title VARCHAR(50) NOT NULL
+                title VARCHAR(50) NOT NULL,
+                created_at TIMESTAMP NOT NULL,
+                updated_at TIMESTAMP NOT NULL
             );
         ");
 
         $this->query("
             CREATE TABLE IF NOT EXISTS `bestoon`.`income_categories`(
                 id INTEGER PRIMARY KEY AUTO_INCREMENT,
-                title VARCHAR(50) NOT NULL
-            );
-        ");
-
-        $this->query("
-            CREATE TABLE IF NOT EXISTS `bestoon`.`income_categories` (
-                id INTEGER PRIMARY KEY AUTO_INCREMENT,
-                income_id INTEGER NOT NULL,
-                category_id INTEGER NOT NULL,
-                FOREIGN KEY (income_id)
-                    REFERENCES incomes(id),
-                FOREIGN KEY (category_id)
-                    REFERENCES income_categories(id)
-            );
-        ");
-
-        $this->query("
-            CREATE TABLE IF NOT EXISTS `bestoon`.`expense_categories` (
-                id INTEGER PRIMARY KEY AUTO_INCREMENT,
-                expense_id INTEGER NOT NULL,
-                category_id INTEGER NOT NULL,
-                FOREIGN KEY (expense_id)
-                    REFERENCES expenses(id),
-                FOREIGN KEY (category_id)
-                    REFERENCES expense_categories(id)
+                title VARCHAR(50) NOT NULL,
+                created_at TIMESTAMP NOT NULL,
+                updated_at TIMESTAMP NOT NULL
             );
         ");
     }

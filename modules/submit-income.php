@@ -23,6 +23,9 @@ function get_content(){ ?>
                             <input type="text" name="date" id="date" class="form-control input-lg" placeholder="تاریخ درآمد">
                         </div>
                         <div class="form-group">
+                            <?php Income_category::show_combobx() ?>
+                        </div>
+                        <div class="form-group">
                             <input type="text" name="amount" id="amount" class="form-control input-lg" placeholder="میزان درآمد به تومان">
                         </div>
                         <hr class="colorgraph">
@@ -60,6 +63,10 @@ function process_inputs(){
             add_message('لطفا تاریخ را وارد کنید.');
             return;
         }
+        if(!isset($_POST['category']) || !$_POST['category']){
+            add_message('لطفا دسته مورد نظر خود را انتخاب کنید.');
+            return;
+        }
         if(!isset($_POST['amount']) || !$_POST['amount']){
             add_message('لطفا مقداری برای درآمد خود وارد کنید.');
             return;
@@ -72,6 +79,7 @@ function process_inputs(){
         $income->title = $_POST['title'];
         $income->amount = $_POST['amount'];
         $income->date = str_replace("/", "-", $_POST['date']);
+        $income->cat_id = $_POST['category'];
         $income->save();
         redirect_to(home_url('dashboard'));
     }

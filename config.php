@@ -43,6 +43,12 @@ date_default_timezone_set("Asia/Tehran");
 // Adding Privileges
 Privilege::add_default_prvileges();
 
+// Adding incomes categories
+Income_category::add_default_categories();
+
+// Adding expenses categories
+Expense_category::add_default_categories();
+
 // Adding session
 $session = new Session();
 

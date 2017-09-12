@@ -12,6 +12,10 @@ class Privilege extends Database_object
 		'اضافه کردن، مشاهده، ویرایش و حذف دخل و خرج',
 	);
 
+    public $id;
+    public $description;
+    public $created_at;
+    public $updated_at;
 	public static function add_default_prvileges()
 	{
 		global $db;
