@@ -214,5 +214,42 @@ class Database
             );
         ");
 
+        $this->query("
+            CREATE TABLE IF NOT EXISTS `bestoon`.`expense_categories`(
+                id INTEGER PRIMARY KEY AUTO_INCREMENT,
+                title VARCHAR(50) NOT NULL
+            );
+        ");
+
+        $this->query("
+            CREATE TABLE IF NOT EXISTS `bestoon`.`income_categories`(
+                id INTEGER PRIMARY KEY AUTO_INCREMENT,
+                title VARCHAR(50) NOT NULL
+            );
+        ");
+
+        $this->query("
+            CREATE TABLE IF NOT EXISTS `bestoon`.`income_categories` (
+                id INTEGER PRIMARY KEY AUTO_INCREMENT,
+                income_id INTEGER NOT NULL,
+                category_id INTEGER NOT NULL,
+                FOREIGN KEY (income_id)
+                    REFERENCES incomes(id),
+                FOREIGN KEY (category_id)
+                    REFERENCES income_categories(id)
+            );
+        ");
+
+        $this->query("
+            CREATE TABLE IF NOT EXISTS `bestoon`.`expense_categories` (
+                id INTEGER PRIMARY KEY AUTO_INCREMENT,
+                expense_id INTEGER NOT NULL,
+                category_id INTEGER NOT NULL,
+                FOREIGN KEY (expense_id)
+                    REFERENCES expenses(id),
+                FOREIGN KEY (category_id)
+                    REFERENCES expense_categories(id)
+            );
+        ");
     }
 }

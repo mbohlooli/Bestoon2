@@ -28,7 +28,7 @@ class Income extends Database_object
         }
         $i = 1;
         echo "<div class='table-responsive'>";
-        echo "<table class='table table-striped table-bordered'>";
+        echo "<table class='table table-bordered'>";
         echo "<tr class='bg-warning'><th colspan='4'><div align='center'>درآمد ها</div></th></tr>";
         echo
         "<tr class='bg-info'>
