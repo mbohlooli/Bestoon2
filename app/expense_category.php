@@ -42,4 +42,14 @@ class Expense_category extends Database_object
         }
     }
 
+    public static function show_combobx()
+    {
+        $options = self::find_all();
+        echo "<select class='form-control' name='category' id='category'>";
+        foreach ($options as $option){
+            echo "<option value='$option[id]'>$option[title]</option>";
+        }
+        echo "</select>";
+    }
+
 }

@@ -13,7 +13,7 @@
     font-family: Yekan, serif !important;
 }
 
-span{
+span.glyphicon{
     font-family: 'Glyphicons Halflings' !important;
 }
 
@@ -92,4 +92,9 @@ span{
 .bg-royal{
     background-color: #886aea !important;
     color: #ffffff;
+}
+
+#chartContainer{
+    direction: ltr !important;
+    left: 0 !important;;
 }
