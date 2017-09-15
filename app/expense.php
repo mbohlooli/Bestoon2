@@ -91,4 +91,30 @@ class Expense extends Database_object
     {
         return $this->user_id == $user_id ? true : false;
     }
+
+    public static function order_by_date()
+    {
+        global $db;
+
+        $result = $db->query("
+            SELECT date, AVG(amount), SUM(amount), COUNT(date), date
+            FROM expenses WHERE user_id = '{$_SESSION['user_id']}'
+            GROUP BY MONTH(date);
+        ");
+        return($result);
+    }
+
+    public static function order_by_cat($cat_id){
+        global $db;
+
+        $res = $db->query("
+            SELECT SUM(amount)
+            FROM expenses
+            WHERE cat_id = '$cat_id' AND user_id = '$_SESSION[user_id]'
+        ");
+
+        $result = $res->fetch_assoc();
+
+        return $result['SUM(amount)'];
+    }
 }

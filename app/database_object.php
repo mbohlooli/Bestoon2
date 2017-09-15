@@ -245,4 +245,16 @@ class Database_object
         $row_exists = self::find_by_colname($col_name, $value);
         return $row_exists ? true : false;
     }
+
+    public static function not_is_empty()
+    {
+        global $db;
+        $table = $db->query("
+            SELECT * FROM ". static::$table_name ."
+        ");
+        if($table->num_rows == 0){
+            return false;
+        }
+        return true;
+    }
 }

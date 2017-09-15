@@ -21,7 +21,7 @@ function get_content(){
         <div id="chartContainer"></div>
         <?php
             $dataPoints = array(
-                array("y" => $income_sum, "label" => "دخل"),
+                array("y" => $income_sum, "label" => "درآمد"),
                 array("y" => $expense_sum, "label" => "خرج"),
                 array("y" => $result, "label" => "موجودی"),
             );
@@ -33,7 +33,7 @@ function get_content(){
                     theme: "theme1",
                     animationEnabled: true,
                     title: {
-                        text: "نمودار دخل ها و خرج  ها"
+                        text: "نمودار درآمد ها و خرج  ها"
                     },
                     data: [
                         {
@@ -46,6 +46,8 @@ function get_content(){
             });
         </script>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <a href="<?php echo APP_URL ?>chart2" class="btn btn-outline-warning" style="float: right !important;"><span class=" glyphicon glyphicon-arrow-right"></span> مشاهده نمودار بعدی </a>
+        <br><br>
 <?php
     }
 }

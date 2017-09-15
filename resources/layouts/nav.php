@@ -10,6 +10,7 @@
             <li role="presentation" class="<?php echo $module == 'home' ? 'active' : null ?>"><a href="<?php APP_URL ?>home">خانه</a></li>
             <?php if($session->is_logged_in()): ?>
                 <li role="presentation" class="<?php echo $module == 'dashboard' ? 'active' : null ?>"><a href="<?php echo APP_URL ?>dashboard">پیشخوان</a></li>
+                <li role="presentation" class="<?php echo (strpos($module, 'chart') !== false) ? 'active' : null ?>"><a href="<?php echo APP_URL ?>chart1">نمودار ها</a></li>
             <?php endif; ?>
             <li role="presentation" class="<?php echo $module == 'about' ? 'active' : null ?>"><a href="<?php echo APP_URL ?>about">درباره ما</a></li>
             <li role="presentation"><a href="#">تماس با ما</a></li>
