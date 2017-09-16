@@ -156,6 +156,8 @@ class Database_object
      */
     public static function find_by_id($id = 0, $in_array = false)
     {
+        global $db;
+        $id = $db->escape_value_both($id);
         $result_array = static::find_by_sql("SELECT * FROM ". static::$table_name ." WHERE id='{$id}' LIMIT 1", $in_array);
         return !empty($result_array) ? array_shift($result_array) : false;
     }

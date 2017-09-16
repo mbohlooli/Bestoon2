@@ -54,7 +54,7 @@ class Expense extends Database_object
                 <td><div align='center'>$expense[date]</div></td>
                 <td><div align='center'>$cat_title</div></td>
                 <td><div align='center'><a href='$url/delete?id=$expense[id]&name=expense' class='btn btn-danger'>حذف</a></div></td>
-                <td><div align='center'><a class='btn btn-primary'>ویرایش</a></div></td>
+                <td><div align='center'><a href='$url/update?id=$expense[id]&name=expense' class='btn btn-primary'>ویرایش</a></div></td>
             </tr>";
             $sum += $expense['amount'];
             $i++;
@@ -117,4 +117,19 @@ class Expense extends Database_object
 
         return $result['SUM(amount)'];
     }
+
+    public function show_combobx()
+    {
+        $options = Expense_category::find_all();
+        echo "<select class='form-control' name='category' id='category'>";
+        foreach ($options as $option){
+            if($option['id'] == $this->cat_id) {
+                echo "<option value='$option[id]' selected>$option[title]</option>";
+            } else {
+                echo "<option value='$option[id]'>$option[title]</option>";
+            }
+        }
+        echo "</select>";
+    }
+
 }

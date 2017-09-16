@@ -54,7 +54,7 @@ class Income extends Database_object
                 <td><div align='center'>$income[date]</div></td>
                 <td><div align='center'>$cat_title</div></td>
                 <td><div align='center'><a href='$url/delete?id=$income[id]&name=income' class='btn btn-danger'>حذف</a></div></td>
-                <td><div align='center'><a class='btn btn-primary'>ویرایش</a></div></td>
+                <td><div align='center'><a href='$url/update?id=$income[id]&name=income' class='btn btn-primary'>ویرایش</a></div></td>
             </tr>";
             $sum += $income['amount'];
             $i++;
@@ -108,7 +108,7 @@ class Income extends Database_object
         global $db;
 
         $res = $db->query("
-            SELECT SUM(amount)
+            SELECT SUM(amount)00000000
             FROM incomes
             WHERE cat_id = '$cat_id' AND user_id = '$_SESSION[user_id]'
         ");
@@ -117,4 +117,20 @@ class Income extends Database_object
 
         return $result['SUM(amount)'];
     }
+
+
+    public function show_combobx()
+    {
+        $options = Income_category::find_all();
+        echo "<select class='form-control' name='category' id='category'>";
+        foreach ($options as $option){
+            if($option['id'] == $this->cat_id) {
+                echo "<option value='$option[id]' selected>$option[title]</option>";
+            } else {
+                echo "<option value='$option[id]'>$option[title]</option>";
+            }
+        }
+        echo "</select>";
+    }
+
 }

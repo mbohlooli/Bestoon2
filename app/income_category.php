@@ -46,5 +46,4 @@ class Income_category extends Database_object
         }
         echo "</select>";
     }
-
 }
