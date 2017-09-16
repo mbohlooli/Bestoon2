@@ -108,7 +108,7 @@ class Income extends Database_object
         global $db;
 
         $res = $db->query("
-            SELECT SUM(amount)00000000
+            SELECT SUM(amount)
             FROM incomes
             WHERE cat_id = '$cat_id' AND user_id = '$_SESSION[user_id]'
         ");
