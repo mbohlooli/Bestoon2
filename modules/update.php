@@ -10,30 +10,36 @@ function get_title(){
 
 function get_content(){ ?>
     <?php global $obj ?>
-    <form role="form" method="POST">
-        <fieldset>
-            <h2>ویرایش <?php echo $_GET['name'] == 'income' ? 'درآمد' : 'خرج' ?></h2>
-            <hr class="colorgraph">
-            <div class="form-group">
-                <input type="text" name="title" id="title" class="form-control input-lg" placeholder="موضوع" value="<?php echo $obj->title ?>">
+    <div class="container">
+        <div class="row" style="margin-top:20px">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                <form role="form" method="POST">
+                    <fieldset>
+                        <h2>ویرایش <?php echo $_GET['name'] == 'income' ? 'درآمد' : 'خرج' ?></h2>
+                        <hr class="colorgraph">
+                        <div class="form-group">
+                            <input type="text" name="title" id="title" class="form-control input-lg" placeholder="موضوع" value="<?php echo $obj->title ?>">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="date" id="date" class="form-control input-lg" placeholder="تاریخ درآمد" value="<?php echo $obj->date ?>">
+                        </div>
+                        <div class="form-group">
+                            <?php $obj->show_combobx() ?>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="amount" id="amount" class="form-control input-lg" placeholder="میزان درآمد به تومان" value="<?php echo $obj->amount ?>">
+                        </div>
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <button type="submit" name="submit" class="btn btn-lg btn-success btn-block" value="1">ثبت</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
-            <div class="form-group">
-                <input type="text" name="date" id="date" class="form-control input-lg" placeholder="تاریخ درآمد" value="<?php echo $obj->date ?>">
-            </div>
-            <div class="form-group">
-                <?php $obj->show_combobx() ?>
-            </div>
-            <div class="form-group">
-                <input type="text" name="amount" id="amount" class="form-control input-lg" placeholder="میزان درآمد به تومان" value="<?php echo $obj->amount ?>">
-            </div>
-            <hr class="colorgraph">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <button type="submit" name="submit" class="btn btn-lg btn-success btn-block" value="1">ثبت</button>
-                </div>
-            </div>
-        </fieldset>
-    </form>
+        </div>
+    </div>
     <script>
         kamaDatepicker('date', {
             nextButtonIcon: "<?php echo APP_URL ?>resources/assets/images/timeir_next.png"
@@ -53,7 +59,10 @@ function process_inputs(){
     if(!isset($_GET['id']) || !$_GET['id'] || !isset($_GET['name']) || !$_GET['name']){
         redirect_to(home_url('404'));
     }
-
+    if(!is_numeric($_GET['id']))
+    {
+        redirect_to(home_url('404'));
+    }
     switch($_GET['name'])
     {
         case 'income':

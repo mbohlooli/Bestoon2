@@ -66,7 +66,7 @@ function secure_to_sql_injection($var){
 }
 
 function secure_data($value){
-    check_input($value);
-    secure_to_sql_injection($value);
+    $value = check_input($value);
+    $value = secure_to_sql_injection($value);
     return $value;
 }

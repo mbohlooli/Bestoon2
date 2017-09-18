@@ -76,10 +76,10 @@ function process_inputs(){
             return;
         }
         $income = new Income();
-        $income->title = $_POST['title'];
-        $income->amount = $_POST['amount'];
-        $income->date = str_replace("/", "-", $_POST['date']);
-        $income->cat_id = $_POST['category'];
+        $income->title = secure_data($_POST['title']);
+        $income->amount = secure_data($_POST['amount']);
+        $income->date = secure_data(str_replace("/", "-", $_POST['date']));
+        $income->cat_id = secure_data($_POST['category']);
         $income->save();
         redirect_to(home_url('dashboard'));
     }
