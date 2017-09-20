@@ -94,4 +94,25 @@ class User extends Database_object
         $privileges = $db->query("SELECT * FROM user_privileges WHERE user_id = {$_SESSION['user_id']}");
         return $privileges; 
     }
+
+    public function has_privilege($privilege_id)
+    {
+        if(!$privilege_id || !is_numeric($privilege_id))
+        {
+            return;
+        }
+        global $db;
+        $privileges = $db->query("
+            SELECT * FROM user_privileges
+            WHERE user_id = '{$this->id}';
+        ");
+        while($privilege = $privileges->fetch_assoc())
+        {
+            if($privilege['privilege_id'] == $privilege_id)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

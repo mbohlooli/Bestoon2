@@ -16,6 +16,9 @@ function get_content(){
     <br><br>
     <a href="<?php echo APP_URL ?>submit-income" class="btn btn-outline-success" style="margin-left: 10px;">ثبت درآمد</a>
     <a href="<?php echo APP_URL ?>submit-expense" class="btn btn-outline-danger"  style="margin-left: 10px;">ثبت خرج</a>
+    <?php if($current_user->has_privilege(2)): ?>
+        <a href="<?php echo APP_URL ?>submit-post" class="btn btn-outline-warning" style="margin-left: 10px;">ثبت پست</a>
+    <?php endif; ?>
     <a href="<?php echo APP_URL ?>chart1" class="btn btn-outline-primary">مشاهده نمودار</a>
     <br><br>
     <div class="row">

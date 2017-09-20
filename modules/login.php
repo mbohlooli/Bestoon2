@@ -49,12 +49,12 @@ function process_inputs(){
 			add_message('نام کاربری نمی تواند خالی باشد.');
 			return ;
 		} elseif(!$_POST['password']){
-			add_message('رمز عبور نمی توان خالی باشد');
+			add_message('رمز عبور نمی تواند خالی باشد');
 			return;
 		}
 
 		if(!User::row_exists('username', $db->escape_value_both($_POST['username']))){
-			add_message('این کاربر در سیستم موجود نمی باشد.');
+			add_message('این کاربر در سیستم موجود نمی باشد.', 'warning');
 			return;
 		}
 		$username = trim($_POST['username']);

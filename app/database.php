@@ -237,5 +237,16 @@ class Database
                 updated_at TIMESTAMP NOT NULL
             );
         ");
+
+        $this->query("
+            CREATE TABLE IF NOT EXISTS `bestoon`.`posts`(
+                id INTEGER PRIMARY KEY AUTO_INCREMENT,
+                title VARCHAR(60) NOT NULL,
+                content TEXT NOT NULL,
+                user_id INTEGER NOT NULL,
+                FOREIGN KEY (user_id)
+                    REFERENCES users(id)
+            );
+        ");
     }
 }

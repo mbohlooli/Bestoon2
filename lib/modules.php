@@ -97,7 +97,7 @@ function show_messages() {
             $type = 'danger';
         }
         ?>
-        <div class="alert alert-<?php echo $type; ?> alert-dismissible" role="alert">
+        <div class="alert bg-<?php echo $type ?> alert-dismissible" role="alert" <?php echo $type == 'danger' ? "style='color: white;'" : null; ?><?php $type == 'info' ? "style='color: white;'" : null; ?>>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
