@@ -51,6 +51,7 @@ function process_inputs(){
             return;
         }
         $post = new Post();
+        $post->id = $_GET['id'];
         $post->title = secure_data($_POST['title']);
         $post->content = secure_data($_POST['content']);
         $post->save();
