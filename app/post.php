@@ -43,8 +43,8 @@ class Post extends Database_object
                             <h2><?= $posts[$i]['title'] ?></h2>
                             <p><?= $posts[$i]['content'] ?></p>
                             <?php if($session->is_logged_in()): ?>
-                                <a class="btn btn-outline-primary" style="margin-left: 10px;">ویرایش</a>
-                                <a class="btn btn-outline-danger">حذف</a>
+                                <a class="btn btn-outline-primary" href="<?php echo APP_URL ?>edit-post?id=<?php echo $posts[$i]['id'] ?>" style="margin-left: 10px;">ویرایش</a>
+                                <a class="btn btn-outline-danger" href="<?php echo APP_URL ?>delete?name=post&id=<?php echo $posts[$i]['id'] ?>">حذف</a>
                             <?php endif ?>
                         </div>
                     </div>
@@ -53,8 +53,8 @@ class Post extends Database_object
                         <h2><?= $posts[$i]['title'] ?></h2>
                         <p><?= $posts[$i]['content'] ?></p>
                         <?php if($session->is_logged_in() && $current_user->has_privilege(2)): ?>
-                            <a class="btn btn-outline-primary" style="margin-left: 10px;">ویرایش</a>
-                            <a class="btn btn-outline-danger">حذف</a>
+                            <a class="btn btn-outline-primary" href="<?php echo APP_URL ?>edit-post?id=<?php echo $posts[$i]['id'] ?>" style="margin-left: 10px;">ویرایش</a>
+                            <a class="btn btn-outline-danger" href="<?php echo APP_URL ?>delete?name=post&id=<?php echo $posts[$i]['id'] ?>">حذف</a>
                         <?php endif ?>
                     </div>
                 <?php endif ?>

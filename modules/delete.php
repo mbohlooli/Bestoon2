@@ -10,12 +10,17 @@ function process_inputs(){
         $obj = Income::find_by_id($_GET['id']);
     } elseif($_GET['name'] == 'expense') {
         $obj = Expense::find_by_id($_GET['id']);
+    } elseif($_GET['name'] == 'post') {
+        global $current_user;
+        if(!$current_user->has_privilege(2)) return;
+        $obj = Post::find_by_id($_GET['id']);
     } else {
         redirect_to(home_url('404'));
     }
-    if(!$obj->belongs_to($_SESSION['user_id'])){
+    if($_GET['name'] != 'post' && !$obj->belongs_to($_SESSION['user_id'])){
         redirect_to(home_url('404'));
     }
     $obj->delete();
-    redirect_to(home_url('dashboard'));
+    if($_GET['name'] == 'post') redirect_to(home_url());
+    else redirect_to(home_url('dashboard'));
 }
