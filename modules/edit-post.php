@@ -38,6 +38,8 @@ function get_content(){ ?>
 <?php }
 
 function process_inputs(){
+    global $current_user;
+    if(!$current_user->has_privilege(2)) redirect_to(home_url('404'));
     if(!isset($_GET['id'])) redirect_to(home_url('404'));
     if(isset($_POST['submit'])){
         if(!isset($_POST['title']) || !$_POST['title']){
